@@ -10,7 +10,7 @@ export const DashboardLayout = () => {
   const { isRTL } = useLanguage();
 
   return (
-    <div className="flex min-h-screen w-full bg-background">
+    <div className="flex h-screen w-full bg-background">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div

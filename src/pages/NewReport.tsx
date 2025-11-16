@@ -34,6 +34,7 @@ import ConditionGrid from "@/components/addNewReportComponents/ConditionGrid";
 import { Textarea } from "@/components/ui/textarea";
 import AddNewSectionModal from "@/components/addNewReportComponents/AddNewSectionModal";
 import StepsWillAdd from "@/components/addNewReportComponents/StepsWillAdd";
+import { CustomToastSuccess } from "@/components/CustomToastSuccess";
 
 interface EquipmentInstance {
   id: string;
@@ -61,10 +62,10 @@ const NewReport = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 8;
-
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   // Centralized form data state for all steps
   const [formData, setFormData] = useState({
-id: Date.now() + Math.floor(Math.random() * 1000),
+    id: Date.now() + Math.floor(Math.random() * 1000),
     step1: {
       projectName: "",
       substationName: "",
@@ -203,65 +204,53 @@ id: Date.now() + Math.floor(Math.random() * 1000),
   };
 
   const handleSubmit = () => {
-
     const step2Array = Object.entries(formData.step2).map(([key, value]) => {
+      const filteredFiles = Object.entries(filesData)
+        .filter(([fileKey]) => fileKey.startsWith(`${key}_`))
+        .reduce((acc, [fileKey, fileValue]) => {
+          acc[fileKey] = fileValue;
+          return acc;
+        }, {});
 
- 
-    const filteredFiles = Object.entries(filesData)
-      .filter(([fileKey]) => fileKey.startsWith(`${key}_`)) 
-      .reduce((acc, [fileKey, fileValue]) => {
-        acc[fileKey] = fileValue;
-        return acc;
-      }, {});
+      return {
+        sectionKey: key,
+        sectionData: value,
+        files: filteredFiles,
+        conditionGrid: conditionGridData[key] || null,
+      };
+    });
 
-    return {
-      sectionKey: key,
-      sectionData: value,
-      files: filteredFiles, 
-      conditionGrid: conditionGridData[key] || null,
+    // الخطوة 2: بناء الداتا النهائية للتقرير
+    const completeReportData = {
+      ...formData,
+      step2: step2Array,
+      // filesData,
+      // conditionGridData,
+      // metadata: {
+      //   timestamp: new Date().toISOString(),
+      //   reportNumber: "RPT-2025-111",
+      //   currentStep,
+      //   totalSteps,
+      // },
     };
-  });
 
-  // الخطوة 2: بناء الداتا النهائية للتقرير
-  const completeReportData = {
-    ...formData,
-    step2: step2Array,            
-    // filesData,                   
-    // conditionGridData,            
-    // metadata: {
-    //   timestamp: new Date().toISOString(),
-    //   reportNumber: "RPT-2025-111",
-    //   currentStep,
-    //   totalSteps,
-    // },
+    const existingReports = JSON.parse(
+      localStorage.getItem("allReports") || "[]"
+    );
+
+    existingReports.push(completeReportData);
+
+    localStorage.setItem("allReports", JSON.stringify(existingReports));
+    localStorage.setItem("latestReport", JSON.stringify(completeReportData));
+    setShowSuccessToast(true);
+
+    setTimeout(() => {
+      navigate("/my-reports");
+    }, 1000);
   };
 
-  const existingReports = JSON.parse(
-    localStorage.getItem("allReports") || "[]"
-  );
-
-  existingReports.push(completeReportData);
-
-  localStorage.setItem("allReports", JSON.stringify(existingReports));
-  localStorage.setItem("latestReport", JSON.stringify(completeReportData));
-
-  // الخطوة 4: Log
-  console.log("=== COMPLETE REPORT DATA ===");
-  console.log(completeReportData);
-
-  console.log("=== ALL REPORTS ===");
-  console.log(existingReports);
-
-  toast({
-    title: t("common.success"),
-    description: "Report data saved successfully to localStorage!",
-  });
-
-  navigate("/my-reports");
-};
-
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6 relative">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -947,6 +936,10 @@ id: Date.now() + Math.floor(Math.random() * 1000),
           {currentStep < totalSteps && <ArrowRight className="h-4 w-4" />}
         </Button>
       </div>
+      <CustomToastSuccess
+        isVisible={showSuccessToast}
+        onClose={() => setShowSuccessToast(false)}
+      />
     </div>
   );
 };

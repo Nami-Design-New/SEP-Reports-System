@@ -12,6 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { CustomToastFail, CustomToastSuccess } from "./CustomToastSuccess";
 
 // ==============================
 // Engineer Interface
@@ -59,6 +60,8 @@ export const EngineerReportTable = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [engineers, setEngineers] = useState<Engineer[]>(mockEngineers);
+  const [showErrorToast, setShowErrorToast] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   // يمكن التعديل لاحقًا لجلب البيانات من API أو LocalStorage
   useEffect(() => {
@@ -89,18 +92,23 @@ export const EngineerReportTable = () => {
       </Badge>
     );
   };
-
+  const handleCancelBtn = () => {
+    setShowErrorToast(true);
+  };
+  const handleAcceptBtn = () => {
+    setShowSuccessToast(true);
+  };
   return (
-    <div className="border rounded-lg">
+    <div className="border rounded-lg relative">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>الاسم</TableHead>
-            <TableHead>البريد الإلكتروني</TableHead>
-            <TableHead>الحالة</TableHead>
-            <TableHead>عدد التقارير</TableHead>
-            <TableHead>آخر نشاط</TableHead>
-            <TableHead className="text-center">إجراءات</TableHead>
+            <TableHead>Name</TableHead>
+            <TableHead>Email </TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Report Number</TableHead>
+            <TableHead>last Active</TableHead>
+            <TableHead className="text-center">Actions</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -126,11 +134,7 @@ export const EngineerReportTable = () => {
                   </Button>
 
                   {/* تعديل */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    title="تعديل"
-                  >
+                  <Button variant="ghost" size="icon" title="تعديل">
                     <Edit />
                   </Button>
 
@@ -141,6 +145,7 @@ export const EngineerReportTable = () => {
                       size="icon"
                       className="text-red-600"
                       title="تعطيل"
+                      onClick={handleCancelBtn}
                     >
                       <X className="h-4 w-4" />
                     </Button>
@@ -150,6 +155,7 @@ export const EngineerReportTable = () => {
                       size="icon"
                       className="text-green-600"
                       title="تفعيل"
+                      onClick={handleAcceptBtn}
                     >
                       <Check className="h-4 w-4" />
                     </Button>
@@ -160,6 +166,16 @@ export const EngineerReportTable = () => {
           ))}
         </TableBody>
       </Table>
+
+      <CustomToastFail
+        isVisible={showErrorToast}
+        onClose={() => setShowErrorToast(false)}
+      />
+      <CustomToastSuccess
+        isVisible={showSuccessToast}
+        onClose={() => setShowSuccessToast(false)}
+      />
+
     </div>
   );
 };
