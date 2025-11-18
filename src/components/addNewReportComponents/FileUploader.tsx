@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Upload, Image, FileText, Video, Music, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface FileUploaderProps {
   addFileName: string;
@@ -15,7 +16,11 @@ interface UploadedFile {
   file: File;
 }
 
-export default function FileUploader({ addFileName, onFilesChange }: FileUploaderProps) {
+export default function FileUploader({
+  addFileName,
+  onFilesChange,
+}: FileUploaderProps) {
+  const { t } = useTranslation();
   const [files, setFiles] = useState<UploadedFile[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,8 +56,8 @@ export default function FileUploader({ addFileName, onFilesChange }: FileUploade
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-semibold text-gray-700">{addFileName}</h3>
         <label className="cursor-pointer flex items-center gap-2 text-sm font-medium text-gray-600 bg-white py-2 px-6 rounded-lg">
-          <Upload size={18} className="text-blue-500"/>
-          Add Attachment
+          <Upload size={18} className="text-blue-500" />
+          {t("newReport.primaryGIS.attachment")}
           <input
             type="file"
             multiple
@@ -80,7 +85,7 @@ export default function FileUploader({ addFileName, onFilesChange }: FileUploade
                   rel="noopener noreferrer"
                   className="text-blue-500 text-xs"
                 >
-                  Preview
+                  {t("newReport.primaryGIS.preview")}
                 </a>
               </div>
             </div>

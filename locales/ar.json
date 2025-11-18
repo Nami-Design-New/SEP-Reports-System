@@ -20,7 +20,8 @@
     "yes": "نعم",
     "no": "لا",
     "items": "عناصر",
-    "success": "نجاح"
+    "success": "نجاح",
+    "notFound": "الصفحه عير موجوده"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -34,6 +35,7 @@
   },
   "sidebar": {
     "reportsSystem": "نظام التقارير",
+    "system": "نظام",
     "dashboard": "لوحة التحكم",
     "myReports": "تقاريري",
     "newReport": "تقرير جديد",
@@ -41,7 +43,8 @@
     "statistics": "الإحصائيات",
     "settings": "الإعدادات",
     "allReports": "كل التقارير",
-    "engineer": "مهندس"
+    "engineer": "مهندس",
+    "comingSoon": "صفحة الإعدادات قريبا .."
   },
   "dashboard": {
     "title": "لوحة التحكم",
@@ -85,7 +88,42 @@
       "outdoorSwitchyard": "ساحة المحولات الخارجية",
       "infrastructure": "البنية التحتية والمباني",
       "warranty": "الضمان والمسؤولية المحدودة",
-      "findings": "النتائج والتوصيات"
+      "findings": "النتائج والتوصيات",
+      "step2": {
+        "gisSwitchGears": "معدات مفاتيح GIS",
+        "circuitBreakers": "قواطع الدائرة",
+        "combinedDisconnectGround": "مفاتيح الفصل/الأرضي المدمجة",
+        "groundSwitches": "مفاتيح الأرضي",
+        "currentTransformers": "محولات التيار",
+        "voltageTransformers": "محولات الجهد",
+        "gisTerminations": "نهايات GIS"
+      },
+      "step3": {
+        "currentTransformers": "محولات التيار",
+        "surgeArresters": "أجهزة صواع الجهد (Surge Arresters)",
+        "capacitorBanks": "بنوك المكثفات",
+        "cableCircuits": "دوائر الكابلات (الكابل ونهايات الإغلاق)"
+      },
+      "step4": {
+        "controlSystems": "أنظمة التحكم (تقليدية)",
+        "protectionRelays": "مرحلات الحماية"
+      },
+      "step5": {
+        "busbarSystems": "أنظمة القضبان النحاسية",
+        "gantries": "الهياكل العلوية",
+        "supportStructures": "الهياكل الداعمة",
+        "foundations": "الأساسات"
+      },
+      "step6": {
+        "gisBuildings": "مباني GIS"
+      },
+      "step7": {
+        "gisSwitchGears": "معدات مفاتيح GIS"
+      },
+      "step8": {
+        "findings": "النتائج",
+        "conclusions": "الخلاصة"
+      }
     },
     "projectInfo": {
       "title": "معلومات المشروع",
@@ -159,8 +197,111 @@
       "addNew": "إضافة جديد",
       "noItems": "لم يتم إضافة أي عناصر بعد. انقر على 'إضافة جديد' لإنشاء واحد.",
       "thermography": "التصوير الحراري",
-      "writeHere": "اكتب هنا ..."
+      "writeHere": "اكتب هنا ...",
+      "addNewSection": "اضافة سكشن",
+      "attachment": "إضافة مرفق",
+      "preview": "معاينة",
+      "assignCondition": "تعيين الحالة",
+      "uploadFile": "رفع ملف",
+      "SF6Lakeage": "تسرب SF6"
     }
+  },
+  "engineers": {
+    "userManagement": "إدارة المستخدمين",
+    "userManagementDesc": "إضافة وتحرير وإدارة حسابات المهندسين",
+    "totalEngineers": "إجمالي المهندسين",
+    "activeEngineers": "نشط",
+    "inactiveEngineers": "غير نشط",
+    "menuEngineers": "قائمة المهندسين",
+    "manageEngineerData": "إدارة بيانات المهندسين هنا"
+  },
+  "statistics": {
+    "title": "الإحصائيات والتقارير",
+    "description": "نظرة عامة على الإحصائيات والتقارير",
+    "totalReports": "إجمالي التقارير",
+    "growthRate": "معدل النمو",
+    "criticalIssues": "مشاكل حرجة",
+    "approvalRate": "معدل الاعتماد",
+    "reportStatus": "حالة التقرير",
+    "reportStatusDesc": "توزيع حالة التقارير",
+    "distributeRisks": "توزيع المخاطر",
+    "distributeRisksDesc": "توزيع المخاطر عبر المحطات",
+    "monthlyReports": "أرقام التقارير الشهرية",
+    "monthlyReportsDesc": "نظرة عامة على أرقام التقارير الشهرية",
+    "stationProblems": "المحطات ذات المشاكل الأكثر",
+    "stationProblemsDesc": "المحطات التي بها مشاكل أكثر",
+    "workSummary": "ملخص العمل",
+    "averageReviewTime": "متوسط وقت المراجعة",
+    "firstTimeApprovalRate": "معدل الاعتماد من المرة الأولى",
+    "averageComponents": "متوسط عدد المكونات لكل تقرير",
+    "totalComponentsChecked": "إجمالي المكونات المفحوصة",
+    "days": "يوم"
+  },
+  "reportDetails": {
+    "downloadPDF": "تحميل PDF",
+    "technicalAssessmentReport": "تقرير التقييم الفني",
+    "riskAssessmentReportAr": "تقرير الفحص وتقييم المخاطر",
+    "reportNumber": "رقم التقرير",
+    "rev": "النسخة",
+    "projectInformation": "معلومات المشروع",
+    "projectName": "اسم المشروع",
+    "substationName": "اسم المحطة الفرعية",
+    "projectCode": "رمز المشروع",
+    "owner": "المالك",
+    "operationArea": "منطقة التشغيل",
+    "inspectionDate": "تاريخ الفحص",
+    "responsibleEngineer": "المهندس المسؤول",
+    "status": "الحالة",
+    "primaryEquipmentGIS": "معدات GIS الأساسية",
+    "gisSwitch": "نوع معدات مفاتيح GIS",
+    "manufacturer": "الصانع",
+    "description": "الوصف",
+    "operationalCondition": "الحالة التشغيلية",
+    "uploadedDocuments": "الوثائق المرفوعة",
+    "primaryEquipmentAIS": "معدات AIS الأساسية",
+    "currentTransformers": "محولات التيار",
+    "surgeArresters": "مانعات التدفق الكهربائي",
+    "circuitBreakers": "قواطع الدارات",
+    "isolators": "العوازل",
+    "secondaryEquipment": "المعدات الثانوية",
+    "outdoorSwitchyard": "ساحة التبديل الخارجية",
+    "busbarSystems": "أنظمة القضبان الناقلة",
+    "foundations": "الأساسات",
+    "lightningProtectionSystems": "أنظمة حماية الصواعق",
+    "generalCondition": "الحالة العامة",
+    "powerTransformers": "محولات الطاقة",
+    "transformerType": "نوع المحول",
+    "capacity": "السعة (MVA)",
+    "condition": "الحالة",
+    "warrantyAndLiability": "الضمان والمسؤولية المحدودة",
+    "systemType": "نوع النظام"
+  },
+  "riskAnalysis": {
+    "detailedComponentsAssessment": "تقييم المكونات المفصل",
+    "risk": "المخاطرة",
+    "serialNumber": "رقم المسلسل",
+    "manufacturingYear": "سنة التصنيع",
+    "condition": "الحالة",
+    "importance": "الأهمية",
+    "findings": "النتائج",
+    "recommendations": "التوصيات",
+    "gisFindings": "مستوى التآكل منخفض في الجسوم الكهربائية وتراكم الرطوبة بتقارير SFG. قد يؤثر على الأداء في المدى القريب.",
+    "transformerFindings": "ارتفاع درجة حرارة الملفات. توصيات طارئة بشأن إصلاحات روتينية داخلية مستحقة قريباً.",
+    "annualInspections": "فحوصات سنوية",
+    "continuousMonitoring": "المراقبة المستمرة",
+    "monthlyMonitoring": "المراقبة الشهرية",
+    "acceleratedMaintenance": "صيانة دورية معجلة",
+    "riskAnalysis": "تحليل المخاطر",
+    "riskPriorityList": "قائمة أولويات المخاطر",
+    "riskMatrix": "مصفوفة المخاطر",
+    "conditionScore": "درجة الحالة",
+    "importanceScore": "درجة الأهمية",
+    "generalRecommendations": "التوصيات العامة",
+    "generalRecommendationsText": "يوصى بإجراء صيانة دورية لـ GIS ومتابعة حالة محول TRF-2018-045 وفقاً لمعايير IEEE والمواصفات الصناعية الحالية.",
+    "additionalNotes": "ملاحظات إضافية",
+    "signatures": "التوقيعات",
+    "responsibleEngineer": "المهندس المسؤول",
+    "reviewer": "المراجع"
   },
   "language": {
     "english": "English",

@@ -230,7 +230,7 @@ export default function DynamicStepsComponent({
                 </div>
                 {/* Visual Condition */}
                 <FileUploader
-                  addFileName="Visual Condition"
+                  addFileName={t("newReport.primaryGIS.visualCondition")}
                   onFilesChange={(files) =>
                     setFilesData((prev) => ({
                       ...prev,
@@ -292,8 +292,8 @@ export default function DynamicStepsComponent({
                       <div className="flex gap-4 mt-2">
                         <RadioButtonGroup
                           options={[
-                            { label: "No", value: "no" },
-                            { label: "Yes", value: "yes" },
+                            { label: t("common.yes"), value: "no" },
+                            { label: t("common.no"), value: "yes" },
                           ]}
                           value={
                             formData[stepKey]?.[sectionKey]?.spareParts || "no"
@@ -313,11 +313,11 @@ export default function DynamicStepsComponent({
                   {t(`${translationPrefix}.testResults`)}
                 </h3>
 
-                {["SF6 Lakeage", "Temperature", "Oil tests", "Humidity"].map(
+                {["SF6Lakeage", "temperature", "oilLevel", "humidity"].map(
                   (item) => (
                     <FileUploader
                       key={item}
-                      addFileName={item}
+                      addFileName={t(`newReport.primaryGIS.${item}`)}
                       onFilesChange={(files) =>
                         setFilesData((prev) => ({
                           ...prev,
@@ -345,7 +345,7 @@ export default function DynamicStepsComponent({
                     />
                     <div className="space-y-2">
                       <Label htmlFor={`assignCondition-${sectionKey}`}>
-                        {t("Condition")}
+                        {t("newReport.primaryGIS.condition")}
                       </Label>
                       <Textarea
                         id={`assignCondition-${sectionKey}`}
@@ -395,7 +395,7 @@ export default function DynamicStepsComponent({
                     </div>
                     {/* upload document wait.. */}
                     <FileUploader
-                      addFileName={"Upload Document"}
+                      addFileName={t("newReport.primaryGIS.uploadFile")}
                       onFilesChange={(files) => {
                         setFilesData((prev) => ({
                           ...prev,
@@ -431,7 +431,7 @@ export default function DynamicStepsComponent({
         </Accordion>
 
         <Button variant="secondary" onClick={openAddModal}>
-          <Plus /> {t("addNewSection")}
+          <Plus /> {t("newReport.primaryGIS.addNewSection")}
         </Button>
       </CardContent>
     </Card>

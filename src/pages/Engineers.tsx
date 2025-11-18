@@ -1,14 +1,6 @@
 import { FileText, Clock, AlertTriangle, Users } from "lucide-react";
 import { StatsCard } from "@/components/StatsCard";
-import { ReportsTable } from "@/components/ReportsTable";
 import { useTranslation } from "react-i18next";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { EngineerReportTable } from "@/components/EngineerTable";
 
 const Engineers = () => {
@@ -17,33 +9,34 @@ const Engineers = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold mb-2">User Management</h1>
+        <h1 className="text-3xl font-bold mb-2">
+          {t("engineers.userManagement")}
+        </h1>
         <p className="text-muted-foreground">
-          Add, edit and manage engineer accounts
+          {t("engineers.userManagementDesc")}
         </p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3  gap-6">
         <StatsCard
-          title={`Total Engineers`}
+          title={t("engineers.totalEngineers")}
           value={4}
           icon={FileText}
           variant="default"
         />
         <StatsCard
-          title={`Active`}
+          title={t("engineers.activeEngineers")}
           value={2}
           icon={Clock}
           variant="info"
         />
         <StatsCard
-          title={`Inactive`}
+          title={t("engineers.inactiveEngineers")}
           value={2}
           icon={AlertTriangle}
           variant="warning"
         />
-
       </div>
 
       {/* Reports Table */}
@@ -51,13 +44,12 @@ const Engineers = () => {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-xl font-semibold">
-             Menu Engineers 
+              {t("engineers.menuEngineers")}
             </h2>
             <p className="text-sm text-muted-foreground">
-              manage engineer data Lorem, ipsum dolor.
+              {t("engineers.manageEngineerData")}
             </p>
           </div>
-
         </div>
         <EngineerReportTable />
       </div>

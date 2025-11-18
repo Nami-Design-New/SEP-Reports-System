@@ -55,7 +55,7 @@ export const Sidebar = ({ onClose }: SidebarProps) => {
               <h1 className="font-semibold text-sm">
                 {t("sidebar.reportsSystem")}
               </h1>
-              <p className="text-xs text-muted-foreground">System</p>
+              <p className="text-xs text-muted-foreground">{t("sidebar.system")}</p>
             </div>
           </div>
           <Button

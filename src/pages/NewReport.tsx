@@ -39,30 +39,29 @@ const NewReport = () => {
   // Dynamic sections state for each step
   const [stepSections, setStepSections] = useState({
     step2: [
-      "GIS Switch Gears",
-      "Circuit Breakers ",
-      "Combined Disconnect/Ground Switches",
-      "Ground Switches ",
-      "Current Transformers",
-      "Voltage Transformers",
-      "GIS Terminations ",
+      t("newReport.steps.step2.gisSwitchGears"),
+      t("newReport.steps.step2.circuitBreakers"),
+      t("newReport.steps.step2.combinedDisconnectGround"),
+      t("newReport.steps.step2.groundSwitches"),
+      t("newReport.steps.step2.currentTransformers"),
+      t("newReport.steps.step2.voltageTransformers"),
+      t("newReport.steps.step2.gisTerminations"),
     ],
     step3: [
-      "Current Transformers",
-      "Surge Arresters",
-      "Capacitor Banks",
-      "Cable Circuits (Cable and Sealing-Ends)",
+      t("newReport.steps.step3.currentTransformers"),
+      t("newReport.steps.step3.surgeArresters"),
+      t("newReport.steps.step3.capacitorBanks"),
+      t("newReport.steps.step3.cableCircuits"),
     ],
-    step4: ["Control Systems (Conventional) ", "Protection Relays"],
+    step4: [t("newReport.steps.step4.controlSystems"), t("newReport.steps.step4.protectionRelays")],
     step5: [
-      "Busbar Systems ",
-      "Gantries",
-      "Support Structures ",
-      "Foundations",
+      t("newReport.steps.step5.busbarSystems"),
+      t("newReport.steps.step5.gantries"),
+      t("newReport.steps.step5.supportStructures"),
+      t("newReport.steps.step5.foundations"),
     ],
-    step6: ["GIS-Buildings "],
-    step7: ["GIS Switch Gears"],
-    // step8: ["findings", "conclusions"],
+    step6: [t("newReport.steps.step6.gisBuildings")],
+    step7: [t("newReport.steps.step7.gisSwitchGears")],
   });
 
   // Centralized form data state for all steps

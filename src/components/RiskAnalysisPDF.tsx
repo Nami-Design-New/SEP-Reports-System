@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
 import {
   ScatterChart,
   Scatter,
@@ -12,6 +13,7 @@ import {
 } from "recharts";
 
 export default function RiskAnalysisPDF({ report }) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("overview");
 
   const riskData = [
@@ -34,9 +36,11 @@ export default function RiskAnalysisPDF({ report }) {
       year: 2019,
       condition: 75,
       importance: 95,
-      findings:
-        "مستوى التآكل منخفض في الجسوم الكهربائية وتراكم الرطوبة بتقارير SFG. قد يؤثر على الأداء في المدى القريب.",
-      recommendations: ["إجراء فحوصات سنوية", "المراقبة المستمرة"],
+      findings: t("riskAnalysis.gisFindings"),
+      recommendations: [
+        t("riskAnalysis.annualInspections"),
+        t("riskAnalysis.continuousMonitoring"),
+      ],
     },
     {
       id: 2,
@@ -47,9 +51,11 @@ export default function RiskAnalysisPDF({ report }) {
       year: 2018,
       condition: 65,
       importance: 98,
-      findings:
-        "ارتفاع درجة حرارة الملفات. توصيات طارئة بشأن إصلاحات روتينية داخلية مستحقة قريباً.",
-      recommendations: ["المراقبة الفوري شهرية", "صيانة دورية معجلة"],
+      findings: t("riskAnalysis.transformerFindings"),
+      recommendations: [
+        t("riskAnalysis.monthlyMonitoring"),
+        t("riskAnalysis.acceleratedMaintenance"),
+      ],
     },
   ];
 
@@ -68,12 +74,10 @@ export default function RiskAnalysisPDF({ report }) {
   return (
     <div className="">
       <div className="max-w-7xl mx-auto space-y-6 px-7">
-        {/* Header */}
-
         {/* Detailed Components Assessment */}
         <div>
           <h2 className="text-xl font-bold text-[#0d5c87] mb-2 py-2">
-            Detailed Components Assessment
+            {t("riskAnalysis.detailedComponentsAssessment")}
           </h2>
           <div className="space-y-4">
             {components.map((component) => (
@@ -93,7 +97,7 @@ export default function RiskAnalysisPDF({ report }) {
                         component.risk
                       )} hover:opacity-90`}
                     >
-                      Risk: {component.risk.toFixed(2)}
+                      {t("riskAnalysis.risk")}: {component.risk.toFixed(2)}
                     </Badge>
                   </div>
                 </CardHeader>
@@ -102,7 +106,7 @@ export default function RiskAnalysisPDF({ report }) {
                   <div className="grid grid-cols-4 gap-4 py-4 ">
                     <div>
                       <p className="text-xs font-semibold text-gray-600 uppercase">
-                        Serial Number
+                        {t("riskAnalysis.serialNumber")}
                       </p>
                       <p className="text-sm font-medium text-gray-900 mt-1">
                         {component.serial}
@@ -110,7 +114,7 @@ export default function RiskAnalysisPDF({ report }) {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-600 uppercase">
-                        Manufacturing Year
+                        {t("riskAnalysis.manufacturingYear")}
                       </p>
                       <p className="text-sm font-medium text-gray-900 mt-1">
                         {component.year}
@@ -118,7 +122,7 @@ export default function RiskAnalysisPDF({ report }) {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-600 uppercase">
-                        Condition
+                        {t("riskAnalysis.condition")}
                       </p>
                       <p className="text-sm font-medium text-gray-900 mt-1">
                         {component.condition}%
@@ -126,7 +130,7 @@ export default function RiskAnalysisPDF({ report }) {
                     </div>
                     <div>
                       <p className="text-xs font-semibold text-gray-600 uppercase">
-                        Importance
+                        {t("riskAnalysis.importance")}
                       </p>
                       <p className="text-sm font-medium text-gray-900 mt-1">
                         {component.importance}%
@@ -137,7 +141,7 @@ export default function RiskAnalysisPDF({ report }) {
                   {/* Findings */}
                   <div>
                     <p className="text-sm font-semibold text-gray-900 my-2">
-                      Findings:
+                      {t("riskAnalysis.findings")}:
                     </p>
                     <p className="text-sm text-gray-700 leading-relaxed">
                       {component.findings}
@@ -147,7 +151,7 @@ export default function RiskAnalysisPDF({ report }) {
                   {/* Recommendations */}
                   <div>
                     <p className="text-sm font-semibold text-gray-900 my-2">
-                      Recommendations:
+                      {t("riskAnalysis.recommendations")}:
                     </p>
                     <div className="flex flex-wrap gap-2">
                       {component.recommendations.map((rec, idx) => (
@@ -169,14 +173,16 @@ export default function RiskAnalysisPDF({ report }) {
 
         <div>
           <h1 className="text-xl font-bold text-[#0d5c87] py-2">
-            Risk Analysis
+            {t("riskAnalysis.riskAnalysis")}
           </h1>
         </div>
 
         {/* Risk Priority List */}
         <Card className="border-none border-b rounded-none">
           <CardHeader>
-            <CardTitle className="text-lg">Risk Priority List</CardTitle>
+            <CardTitle className="text-lg">
+              {t("riskAnalysis.riskPriorityList")}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
@@ -209,7 +215,9 @@ export default function RiskAnalysisPDF({ report }) {
         {/* Risk Matrix */}
         <Card className="border-none border-b rounded-none">
           <CardHeader>
-            <CardTitle className="text-lg px-4 ">Risk Matrix</CardTitle>
+            <CardTitle className="text-lg px-4 ">
+              {t("riskAnalysis.riskMatrix")}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="w-full h-80">
@@ -221,10 +229,10 @@ export default function RiskAnalysisPDF({ report }) {
                   <XAxis
                     type="number"
                     dataKey="conditionScore"
-                    name="Condition Score"
+                    name={t("riskAnalysis.conditionScore")}
                     domain={[0, 100]}
                     label={{
-                      value: "Condition Score",
+                      value: t("riskAnalysis.conditionScore"),
                       position: "insideBottomRight",
                       offset: -5,
                     }}
@@ -232,10 +240,10 @@ export default function RiskAnalysisPDF({ report }) {
                   <YAxis
                     type="number"
                     dataKey="importanceScore"
-                    name="Importance Score"
+                    name={t("riskAnalysis.importanceScore")}
                     domain={[0, 100]}
                     label={{
-                      value: "Importance Score",
+                      value: t("riskAnalysis.importanceScore"),
                       angle: -90,
                       position: "insideLeft",
                     }}
@@ -260,13 +268,12 @@ export default function RiskAnalysisPDF({ report }) {
         <Card className=" border-none border-b ">
           <CardHeader>
             <CardTitle className="text-lg text-[#1c6891]">
-              General Recommendations
+              {t("riskAnalysis.generalRecommendations")}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-800">
-              بشكل دوري GIS ومتابعة حالة TRF-2018-045 يوصى بإجراء صيانة دادية
-              لمحول بموجب معايير IEEE والمواصفات الصناعية الحالية.
+              {t("riskAnalysis.generalRecommendationsText")}
             </p>
           </CardContent>
         </Card>
@@ -275,12 +282,12 @@ export default function RiskAnalysisPDF({ report }) {
         <Card className="border-none border-b rounded-none">
           <CardHeader>
             <CardTitle className="text-lg text-[#1c6891]">
-              Additional Notes
+              {t("riskAnalysis.additionalNotes")}
             </CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-700">
-              {report.step8.descriptionField}
+              {report?.step8?.descriptionField || "-"}
             </p>
           </CardContent>
         </Card>
@@ -288,30 +295,36 @@ export default function RiskAnalysisPDF({ report }) {
         {/* Signatures */}
         <Card className="border-none border-b rounded-none">
           <CardHeader>
-            <CardTitle className="text-lg text-[#1c6891]">Signatures</CardTitle>
+            <CardTitle className="text-lg text-[#1c6891]">
+              {t("riskAnalysis.signatures")}
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 gap-8">
               <div>
                 <p className="text-xs font-semibold text-gray-600 uppercase mb-4">
-                  Responsible Engineer
+                  {t("riskAnalysis.responsibleEngineer")}
                 </p>
                 <div className="border-t border-gray-300 pt-2">
                   <p className="text-sm font-medium text-gray-900">
-                    أحمد ايهاب
+                    {report?.engineer || "-"}
                   </p>
-                  <p className="text-xs text-gray-600">2025-10-20</p>
+                  <p className="text-xs text-gray-600">
+                    {report?.createdDate || "2025-10-20"}
+                  </p>
                 </div>
               </div>
               <div>
                 <p className="text-xs font-semibold text-gray-600 uppercase mb-4">
-                  Reviewer
+                  {t("riskAnalysis.reviewer")}
                 </p>
                 <div className="border-t border-gray-300 pt-2">
                   <p className="text-sm font-medium text-gray-900">
-                    خالد الاداري
+                    {report?.reviewer || "-"}
                   </p>
-                  <p className="text-xs text-gray-600">2025-10-20</p>
+                  <p className="text-xs text-gray-600">
+                    {report?.reviewDate || "2025-10-20"}
+                  </p>
                 </div>
               </div>
             </div>

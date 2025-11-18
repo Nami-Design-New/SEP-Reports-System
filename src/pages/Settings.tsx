@@ -6,7 +6,7 @@ const Settings = () => {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">{t('sidebar.settings')}</h1>
-      <p className="text-muted-foreground">Settings page coming soon...</p>
+      <p className="text-muted-foreground">{t("sidebar.comingSoon")}</p>
     </div>
   );
 };

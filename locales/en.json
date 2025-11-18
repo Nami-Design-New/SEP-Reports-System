@@ -20,7 +20,8 @@
     "yes": "Yes",
     "no": "No",
     "items": "items",
-    "success": "Success"
+    "success": "Success",
+    "notFound": "Report not found"
   },
   "auth": {
     "login": "Login",
@@ -34,6 +35,7 @@
   },
   "sidebar": {
     "reportsSystem": "Reports System",
+    "system": "System",
     "dashboard": "Dashboard",
     "myReports": "My Reports",
     "newReport": "New Report",
@@ -41,7 +43,8 @@
     "statistics": "Statistics",
     "settings": "Settings",
     "allReports": "All Reports",
-    "engineer": "Engineer"
+    "engineer": "Engineer",
+    "comingSoon": "Settings page coming soon..."
   },
   "dashboard": {
     "title": "Dashboard",
@@ -85,7 +88,42 @@
       "outdoorSwitchyard": "Outdoor Switchyard",
       "infrastructure": "Infrastructure and Buildings",
       "warranty": "Warranty and Limited Liability",
-      "findings": "Findings and Recommendations"
+      "findings": "Findings and Recommendations",
+      "step2": {
+        "gisSwitchGears": "GIS Switch Gears",
+        "circuitBreakers": "Circuit Breakers",
+        "combinedDisconnectGround": "Combined Disconnect/Ground Switches",
+        "groundSwitches": "Ground Switches",
+        "currentTransformers": "Current Transformers",
+        "voltageTransformers": "Voltage Transformers",
+        "gisTerminations": "GIS Terminations"
+      },
+      "step3": {
+        "currentTransformers": "Current Transformers",
+        "surgeArresters": "Surge Arresters",
+        "capacitorBanks": "Capacitor Banks",
+        "cableCircuits": "Cable Circuits (Cable and Sealing-Ends)"
+      },
+      "step4": {
+        "controlSystems": "Control Systems (Conventional)",
+        "protectionRelays": "Protection Relays"
+      },
+      "step5": {
+        "busbarSystems": "Busbar Systems",
+        "gantries": "Gantries",
+        "supportStructures": "Support Structures",
+        "foundations": "Foundations"
+      },
+      "step6": {
+        "gisBuildings": "GIS-Buildings"
+      },
+      "step7": {
+        "gisSwitchGears": "GIS Switch Gears"
+      },
+      "step8": {
+        "findings": "Findings",
+        "conclusions": "Conclusions"
+      }
     },
     "projectInfo": {
       "title": "Project Information",
@@ -158,9 +196,112 @@
       "vcbTerminations": "VCB Terminations",
       "addNew": "Add New",
       "noItems": "No items added yet. Click 'Add New' to create one.",
-      "thermography":"Thermography",
-      "writeHere":"write here .."
+      "thermography": "Thermography",
+      "writeHere": "write here ..",
+      "attachment": "Add Attachment",
+      "preview": "Preview",
+      "assignCondition": "Assign Condition",
+      "uploadFile": "Upload File",
+      "SF6Lakeage": "SF6 Lakeage",
+      "addNewSection": "Add Section"
     }
+  },
+  "engineers": {
+    "userManagement": "User Management",
+    "userManagementDesc": "Add, edit and manage engineer accounts",
+    "totalEngineers": "Total Engineers",
+    "activeEngineers": "Active",
+    "inactiveEngineers": "Inactive",
+    "menuEngineers": "Menu Engineers",
+    "manageEngineerData": "Manage engineer data here"
+  },
+  "statistics": {
+    "title": "Statistics and Reports",
+    "description": "Statistics and Reports overview",
+    "totalReports": "Total Reports",
+    "growthRate": "Growth Rate",
+    "criticalIssues": "Critical Issues",
+    "approvalRate": "Approval Rate",
+    "reportStatus": "Report Status",
+    "reportStatusDesc": "Status distribution of reports",
+    "distributeRisks": "Distribute Risks",
+    "distributeRisksDesc": "Distribution of risks across stations",
+    "monthlyReports": "Month Reports Numbers",
+    "monthlyReportsDesc": "Monthly report numbers overview",
+    "stationProblems": "Station More Problems",
+    "stationProblemsDesc": "Stations with more reported issues",
+    "workSummary": "Work Summary",
+    "averageReviewTime": "Average Review Time",
+    "firstTimeApprovalRate": "First Time Approval Rate",
+    "averageComponents": "Average Components per Report",
+    "totalComponentsChecked": "Total Components Checked",
+    "days": "days"
+  },
+  "reportDetails": {
+    "downloadPDF": "Download PDF",
+    "technicalAssessmentReport": "Technical Assessment Report",
+    "riskAssessmentReportAr": "Technical Assessment and Risk Analysis Report",
+    "reportNumber": "Report Number",
+    "rev": "Rev",
+    "projectInformation": "Project Information",
+    "projectName": "Project Name",
+    "substationName": "Substation Name",
+    "projectCode": "Project Code",
+    "owner": "Owner",
+    "operationArea": "Operation Area",
+    "inspectionDate": "Inspection Date",
+    "responsibleEngineer": "Responsible Engineer",
+    "status": "Status",
+    "primaryEquipmentGIS": "Primary Equipment GIS",
+    "gisSwitch": "GIS Switch Gears Equipment Type",
+    "manufacturer": "Manufacturer",
+    "description": "Description",
+    "operationalCondition": "Operational Condition",
+    "uploadedDocuments": "Uploaded Documents",
+    "primaryEquipmentAIS": "Primary Equipment AIS",
+    "currentTransformers": "Current Transformers",
+    "surgeArresters": "Surge Arresters",
+    "circuitBreakers": "Circuit Breakers",
+    "isolators": "Isolators",
+    "secondaryEquipment": "Secondary Equipment",
+    "outdoorSwitchyard": "Outdoor Switchyard",
+    "busbarSystems": "Busbar Systems",
+    "foundations": "Foundations",
+    "lightningProtectionSystems": "Lightning Protection Systems",
+    "generalCondition": "General Condition",
+    "powerTransformers": "Power Transformers",
+    "transformerType": "Transformer Type",
+    "capacity": "Capacity (MVA)",
+    "condition": "Condition",
+    "warrantyAndLiability": "Warranty and Limited Liability",
+    "systemType": "System Type"
+  },
+  "riskAnalysis": {
+    "detailedComponentsAssessment": "Detailed Components Assessment",
+    "risk": "Risk",
+    "serialNumber": "Serial Number",
+    "manufacturingYear": "Manufacturing Year",
+    "condition": "Condition",
+    "importance": "Importance",
+    "findings": "Findings",
+    "recommendations": "Recommendations",
+    "gisFindings": "Low wear level in electrical bodies and moisture accumulation in SFG reports. May affect performance in the near term.",
+    "transformerFindings": "High winding temperature. Urgent recommendations for routine internal repairs due soon.",
+    "annualInspections": "Annual Inspections",
+    "continuousMonitoring": "Continuous Monitoring",
+    "monthlyMonitoring": "Monthly Monitoring",
+    "acceleratedMaintenance": "Accelerated Routine Maintenance",
+    "riskAnalysis": "Risk Analysis",
+    "riskPriorityList": "Risk Priority List",
+    "riskMatrix": "Risk Matrix",
+    "conditionScore": "Condition Score",
+    "importanceScore": "Importance Score",
+    "generalRecommendations": "General Recommendations",
+    "generalRecommendationsText": "Periodic GIS maintenance and monitoring of TRF-2018-045 transformer condition is recommended in accordance with IEEE standards and current industrial specifications.",
+    "additionalNotes": "Additional Notes",
+    "signatures": "Signatures",
+    "responsibleEngineer": "Responsible Engineer",
+    "reviewer": "Reviewer"
   },
   "language": {
     "english": "English",

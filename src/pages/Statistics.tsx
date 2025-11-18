@@ -17,35 +17,32 @@ const Statistics = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold mb-2">Statistics and Reports</h1>
-        <p className="text-muted-foreground">
-          Lorem ipsum dolor sit amet, consectetur adipisicing. Statistics and
-          Reports
-        </p>
+        <h1 className="text-3xl font-bold mb-2">{t("statistics.title")}</h1>
+        <p className="text-muted-foreground">{t("statistics.description")}</p>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard
-          title={`إجمالي التقارير`}
+          title={t("statistics.totalReports")}
           value={6}
           icon={FileText}
           variant="default"
         />
         <StatsCard
-          title={`معدل النمو`}
+          title={t("statistics.growthRate")}
           value={`15%`}
           icon={Clock}
           variant="info"
         />
         <StatsCard
-          title={`مشاكل حرجة`}
+          title={t("statistics.criticalIssues")}
           value={`5`}
           icon={AlertTriangle}
           variant="warning"
         />
         <StatsCard
-          title={`معدل الاعتماد`}
+          title={t("statistics.approvalRate")}
           value={`85%`}
           icon={Users}
           variant="success"
@@ -57,8 +54,12 @@ const Statistics = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white border p-8 rounded-xl ">
             <div>
-              <h3 className="text-lg font-bold">Report Status </h3>
-              <p className="text-gray-500">Lorem, ipsum dolor sit amet. </p>
+              <h3 className="text-lg font-bold">
+                {t("statistics.reportStatus")}
+              </h3>
+              <p className="text-gray-500">
+                {t("statistics.reportStatusDesc")}
+              </p>
             </div>
             <div>
               <ChartPieLabelList
@@ -69,8 +70,12 @@ const Statistics = () => {
           </div>
           <div className="bg-white border p-8 rounded-xl ">
             <div>
-              <h3 className="text-lg font-bold">Distrbute Risks </h3>
-              <p className="text-gray-500">Lorem, ipsum dolor sit amet. </p>
+              <h3 className="text-lg font-bold">
+                {t("statistics.distributeRisks")}
+              </h3>
+              <p className="text-gray-500">
+                {t("statistics.distributeRisksDesc")}
+              </p>
             </div>
             <div>
               <ChartPieLabelList
@@ -86,9 +91,11 @@ const Statistics = () => {
         <div className="grid grid-cols-1 ">
           <div className="bg-white border p-8 rounded-xl ">
             <div>
-              <h3 className="text-lg font-bold">Month Reports Numbers </h3>
+              <h3 className="text-lg font-bold">
+                {t("statistics.monthlyReports")}
+              </h3>
               <p className="text-gray-500">
-                Lorem, ipsum dolor sit amet ipsum dolor sit amet.{" "}
+                {t("statistics.monthlyReportsDesc")}{" "}
               </p>
             </div>
             <div>
@@ -102,9 +109,11 @@ const Statistics = () => {
         <div className="grid grid-cols-1 ">
           <div className="bg-white border p-8 rounded-xl ">
             <div>
-              <h3 className="text-lg font-bold">Station More Problems</h3>
+              <h3 className="text-lg font-bold">
+                {t("statistics.stationProblems")}
+              </h3>
               <p className="text-gray-500">
-                Lorem, ipsum dolor sit amet ipsum dolor sit amet.{" "}
+                {t("statistics.stationProblemsDesc")}{" "}
               </p>
             </div>
             <div>
@@ -119,27 +128,27 @@ const Statistics = () => {
         <div className="grid grid-cols-1 ">
           <div className="bg-white border p-8 rounded-xl ">
             <div>
-              <h3 className="text-lg font-bold">Work Summary</h3>
-              <p className="text-gray-500">
-                Lorem, ipsum dolor sit amet ipsum dolor sit amet.{" "}
-              </p>
+              <h3 className="text-lg font-bold">
+                {t("statistics.workSummary")}
+              </h3>
+              <p className="text-gray-500">{t("statistics.description")} </p>
             </div>
             <div className="grid grid-cols-1 gap-4 py-10">
               <div className="bg-blue-50/40 p-5 rounded-xl flex justify-between items-center">
-                <span>2.5 يوم</span>
-                <span>متوسط وقت المراجعة </span>
+                <span>2.5 {t("statistics.days")}</span>
+                <span>{t("statistics.averageReviewTime")}</span>
               </div>
               <div className="bg-blue-50/40 p-5 rounded-xl flex justify-between items-center">
                 <span> 75%</span>
-                <span> معدل الاعتماد من المرة الأولى</span>
+                <span>{t("statistics.firstTimeApprovalRate")}</span>
               </div>
               <div className="bg-blue-50/40 p-5 rounded-xl flex justify-between items-center">
                 <span> 3.2</span>
-                <span> متوسط عدد المكونات لكل تقرير</span>
+                <span>{t("statistics.averageComponents")}</span>
               </div>
               <div className="bg-blue-50/40 p-5 rounded-xl flex justify-between items-center">
                 <span> 4</span>
-                <span> إجمالي المكونات المفحوصة</span>
+                <span>{t("statistics.totalComponentsChecked")}</span>
               </div>
             </div>
           </div>

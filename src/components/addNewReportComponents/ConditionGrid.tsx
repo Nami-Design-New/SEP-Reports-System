@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface ConditionGridProps {
   onGridChange?: (grid: number[][]) => void;
 }
 
 export default function ConditionGrid({ onGridChange }: ConditionGridProps) {
+  const { t } = useTranslation();
   const rows = 5;
   const cols = 5;
 
@@ -28,7 +30,9 @@ export default function ConditionGrid({ onGridChange }: ConditionGridProps) {
 
   return (
     <div className="py-4 sm:py-6 w-full  mx-auto">
-      <h3 className="font-bold text-lg mb-4">Assign Condition</h3>
+      <h3 className="font-bold text-lg mb-4">
+        {t("newReport.primaryGIS.assignCondition")}
+      </h3>
 
       <div
         className="grid gap-1 sm:gap-2 w-full"

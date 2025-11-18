@@ -8,7 +8,7 @@ const StepEightComponent = ({ formData, handleInputChange }) => {
     <div className="space-y-4 ">
       <div className="grid grid-cols-1 gap-4">
         <div className="space-y-2">
-          <Label className="text-[#0d5c87] text-lg p-2" htmlFor={`descStepEight`}>{t("Description")}</Label>
+          <Label className="text-[#0d5c87] text-lg p-2" htmlFor={`descStepEight`}>{t("newReport.primaryGIS.description")}</Label>
           <Textarea
             id={`descStepEight`}
             value={formData.step8?.descriptionField}

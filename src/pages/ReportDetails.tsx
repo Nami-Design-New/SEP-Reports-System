@@ -8,6 +8,7 @@ import RiskAnalysisPDF from "@/components/RiskAnalysisPDF";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import ModalImage from "@/components/ModalImage";
+
 const ReportDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -16,15 +17,16 @@ const ReportDetails = () => {
   const componentRef = useRef(null);
   const [isOpenImageModal, setIsOpenImageModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   useEffect(() => {
     const allReportsJson = localStorage.getItem("allReports");
-    // console.log("all report json", JSON.parse(allReportsJson));
     if (allReportsJson) {
       const allReports = JSON.parse(allReportsJson);
       const foundReport = allReports.find((r) => r.id == id);
       setReport(foundReport);
     }
   }, [id]);
+
   if (!report) {
     return (
       <div className="space-y-6">
@@ -36,10 +38,11 @@ const ReportDetails = () => {
           <ArrowLeft className="h-4 w-4" />
           {t("common.back")}
         </Button>
-        <p className="text-muted-foreground">Report not found</p>
+        <p className="text-muted-foreground">{t("common.notFound")}</p>
       </div>
     );
   }
+
   const handleDownloadPDF = async () => {
     const element = componentRef.current;
     const canvas = await html2canvas(element, { scale: 2 });
@@ -51,10 +54,10 @@ const ReportDetails = () => {
     const imgHeight = (canvas.height * pdfWidth) / canvas.width;
     let heightLeft = imgHeight;
     let position = 0;
-    // first page
+
     pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
     heightLeft -= pdfHeight;
-    // remain pages
+
     while (heightLeft > 0) {
       position -= pdfHeight;
       pdf.addPage();
@@ -63,11 +66,6 @@ const ReportDetails = () => {
     }
     pdf.save("report.pdf");
   };
-
-  // console.log(
-  //   "report details page data from localStorage to display ::",
-  //   report
-  // );
 
   return (
     <div className="max-w-7xl mx-auto space-y-6 bg-white">
@@ -83,9 +81,10 @@ const ReportDetails = () => {
         </Button>
         <Button onClick={handleDownloadPDF} className="gap-2">
           <Download className="h-4 w-4" />
-          Download PDF
+          {t("reportDetails.downloadPDF")}
         </Button>
       </div>
+
       <div className="space-y-6" ref={componentRef}>
         {/* Report Header */}
         <div className="bg-primary text-primary-foreground rounded-lg p-6">
@@ -96,54 +95,65 @@ const ReportDetails = () => {
               </div>
               <div>
                 <h1 className="text-2xl font-bold mb-1">
-                  Technical Assessment Report
+                  {t("reportDetails.technicalAssessmentReport")}
                 </h1>
                 <p className="text-primary-foreground/80">
-                  تقرير الفحص وتقييم المخاطر
+                  {t("reportDetails.riskAssessmentReportAr")}
                 </p>
               </div>
             </div>
             <div className="text-right">
               <p className="text-sm text-primary-foreground/80">
-                Report Number
+                {t("reportDetails.reportNumber")}
               </p>
               <p className="text-lg font-bold">{report?.reportNumber}</p>
-              <p className="text-sm mt-2">Rev ({report?.revision || 1})</p>
+              <p className="text-sm mt-2">
+                {t("reportDetails.rev")} ({report?.revision || 1})
+              </p>
             </div>
           </div>
         </div>
+
         {/* Step 1: Project Information */}
         <div className="bg-card border-b p-6">
           <div className="flex items-center gap-2 mb-4">
             <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">
               1
             </div>
-            <h2 className="text-xl font-bold">Project Information</h2>
+            <h2 className="text-xl font-bold">
+              {t("reportDetails.projectInformation")}
+            </h2>
           </div>
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Project Name</p>
+              <p className="text-sm text-muted-foreground mb-1">
+                {t("reportDetails.projectName")}
+              </p>
               <p className="font-medium">{report?.step1?.projectName || "-"}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">
-                Substation Name
+                {t("reportDetails.substationName")}
               </p>
               <p className="font-medium">
                 {report?.step1?.substationName || "-"}
               </p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Project Code</p>
+              <p className="text-sm text-muted-foreground mb-1">
+                {t("reportDetails.projectCode")}
+              </p>
               <p className="font-medium">{report?.step1?.projectCode || "-"}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Owner</p>
+              <p className="text-sm text-muted-foreground mb-1">
+                {t("reportDetails.owner")}
+              </p>
               <p className="font-medium">{report?.step1?.owner || "-"}</p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">
-                Operation Area
+                {t("reportDetails.operationArea")}
               </p>
               <p className="font-medium">
                 {report?.step1?.operationArea || "-"}
@@ -151,7 +161,7 @@ const ReportDetails = () => {
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">
-                Inspection Date
+                {t("reportDetails.inspectionDate")}
               </p>
               <p className="font-medium">
                 {report?.step1?.inspectionDate || "-"}
@@ -159,12 +169,14 @@ const ReportDetails = () => {
             </div>
             <div>
               <p className="text-sm text-muted-foreground mb-1">
-                Responsible Engineer
+                {t("reportDetails.responsibleEngineer")}
               </p>
               <p className="font-medium">{report?.engineer || "-"}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Status</p>
+              <p className="text-sm text-muted-foreground mb-1">
+                {t("reportDetails.status")}
+              </p>
               <Badge
                 variant="default"
                 className="bg-success text-success-foreground"
@@ -182,7 +194,9 @@ const ReportDetails = () => {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">
                 2
               </div>
-              <h2 className="text-xl font-bold">Primary Equipment GIS</h2>
+              <h2 className="text-xl font-bold">
+                {t("reportDetails.primaryEquipmentGIS")}
+              </h2>
             </div>
             <div className="space-y-6">
               {report?.step2.map((section, idx: number) => (
@@ -190,11 +204,10 @@ const ReportDetails = () => {
                   <h3 className="font-bold text-lg mb-4 capitalize">
                     {section.sectionKey.replace(/_/g, " ")}
                   </h3>
-                  {/* Main Equipment Info - Only 4 fields */}
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
-                        GIS Switch Gears Equipment Type
+                        {t("reportDetails.gisSwitch")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -202,7 +215,7 @@ const ReportDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
-                        Manufacturer
+                        {t("reportDetails.manufacturer")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.manufacturer || "-"}
@@ -210,7 +223,7 @@ const ReportDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
-                        Description
+                        {t("reportDetails.description")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.description || "-"}
@@ -218,42 +231,19 @@ const ReportDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
-                        Operational Condition
+                        {t("reportDetails.operationalCondition")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.condition || "-"}
                       </p>
                     </div>
                   </div>
-                  {/* Condition Grid */}
-                  {/* {section.conditionGrid && section.conditionGrid.length > 0 && (
-                    <div className="mb-6">
-                      <h4 className="font-semibold mb-3">Assessment Conditions</h4>
-                      <div className="bg-background rounded p-3 overflow-auto">
-                        <table className="w-full text-sm">
-                          <tbody>
-                            {section.conditionGrid.map((row: number[], rowIdx: number) => (
-                              <tr key={rowIdx}>
-                                {row.map((cell: number, cellIdx: number) => (
-                                  <td 
-                                    key={cellIdx} 
-                                    className="border border-border p-2 text-center"
-                                  >
-                                    {cell}
-                                  </td>
-                                ))}
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  )} */}
-                  {/* Files */}
 
                   {section.files && Object.keys(section.files).length > 0 && (
                     <div>
-                      <h4 className="font-semibold mb-3">Uploaded Documents</h4>
+                      <h4 className="font-semibold mb-3">
+                        {t("reportDetails.uploadedDocuments")}
+                      </h4>
                       <div className="space-y-3">
                         {Object.entries(section.files).map(
                           ([fileKey, filesList]: [string, any]) =>
@@ -316,19 +306,20 @@ const ReportDetails = () => {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">
                 3
               </div>
-              <h2 className="text-xl font-bold">Primary Equipment AIS</h2>
+              <h2 className="text-xl font-bold">
+                {t("reportDetails.primaryEquipmentAIS")}
+              </h2>
             </div>
             <div className="space-y-6">
               {report?.step3.map((section, idx: number) => (
-                <div key={idx} className=" p-4">
+                <div key={idx} className="p-4">
                   <h3 className="font-bold text-lg mb-4 capitalize">
                     {section.sectionKey.replace(/_/g, " ")}
                   </h3>
-                  {/* Main Equipment Info - Only 4 fields */}
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="bg-slate-50 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Current Transformers
+                        {t("reportDetails.currentTransformers")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -336,7 +327,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="bg-slate-50 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Surge Arresters
+                        {t("reportDetails.surgeArresters")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.manufacturer || "-"}
@@ -344,7 +335,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="bg-slate-50 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Circuit Breakers
+                        {t("reportDetails.circuitBreakers")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.description || "-"}
@@ -352,7 +343,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="bg-slate-50 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Isolators
+                        {t("reportDetails.isolators")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.condition || "-"}
@@ -372,19 +363,20 @@ const ReportDetails = () => {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">
                 4
               </div>
-              <h2 className="text-xl font-bold">Secondary Equipment</h2>
+              <h2 className="text-xl font-bold">
+                {t("reportDetails.secondaryEquipment")}
+              </h2>
             </div>
             <div className="space-y-6">
               {report?.step4.map((section, idx: number) => (
-                <div key={idx} className=" p-4">
+                <div key={idx} className="p-4">
                   <h3 className="font-bold text-lg mb-4 capitalize">
                     {section.sectionKey.replace(/_/g, " ")}
                   </h3>
-                  {/* Main Equipment Info - Only 4 fields */}
                   <div className="grid grid-cols-1 gap-4 mb-6">
                     <div className="border p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Current Transformers
+                        {t("reportDetails.currentTransformers")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -392,7 +384,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="border p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Surge Arresters
+                        {t("reportDetails.surgeArresters")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.manufacturer || "-"}
@@ -401,7 +393,7 @@ const ReportDetails = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-slate-50 p-4 rounded-xl">
                         <p className="text-sm text-muted-foreground mb-1">
-                          Circuit Breakers
+                          {t("reportDetails.circuitBreakers")}
                         </p>
                         <p className="font-medium">
                           {section.sectionData?.description || "-"}
@@ -409,7 +401,7 @@ const ReportDetails = () => {
                       </div>
                       <div className="bg-slate-50 p-4 rounded-xl">
                         <p className="text-sm text-muted-foreground mb-1">
-                          Isolators
+                          {t("reportDetails.isolators")}
                         </p>
                         <p className="font-medium">
                           {section.sectionData?.condition || "-"}
@@ -430,19 +422,20 @@ const ReportDetails = () => {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">
                 5
               </div>
-              <h2 className="text-xl font-bold"> Outdoor Switchyard</h2>
+              <h2 className="text-xl font-bold">
+                {t("reportDetails.outdoorSwitchyard")}
+              </h2>
             </div>
             <div className="space-y-6">
               {report?.step5.map((section, idx: number) => (
-                <div key={idx} className=" p-4">
+                <div key={idx} className="p-4">
                   <h3 className="font-bold text-lg mb-4 capitalize">
                     {section.sectionKey.replace(/_/g, " ")}
                   </h3>
-                  {/* Main Equipment Info - Only 4 fields */}
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="border p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Busbar Systems
+                        {t("reportDetails.busbarSystems")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -450,7 +443,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="border p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Foundations
+                        {t("reportDetails.foundations")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.manufacturer || "-"}
@@ -458,7 +451,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="border p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Lightning Protection Systems
+                        {t("reportDetails.lightningProtectionSystems")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.description || "-"}
@@ -466,7 +459,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="border p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        General Condition
+                        {t("reportDetails.generalCondition")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.condition || "-"}
@@ -486,19 +479,20 @@ const ReportDetails = () => {
               <div className="bg-primary text-primary-foreground rounded-full w-8 h-8 flex items-center justify-center font-bold">
                 6
               </div>
-              <h2 className="text-xl font-bold">Power Transformers</h2>
+              <h2 className="text-xl font-bold">
+                {t("reportDetails.powerTransformers")}
+              </h2>
             </div>
             <div className="space-y-6">
               {report?.step6.map((section, idx: number) => (
-                <div key={idx} className=" p-4">
+                <div key={idx} className="p-4">
                   <h3 className="font-bold text-lg mb-4 capitalize">
                     {section.sectionKey.replace(/_/g, " ")}
                   </h3>
-                  {/* Main Equipment Info - Only 4 fields */}
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div className="bg-blue-200/20 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Transformer Type
+                        {t("reportDetails.transformerType")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -506,7 +500,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="bg-blue-200/20 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Manufacturer
+                        {t("reportDetails.manufacturer")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.manufacturer || "-"}
@@ -514,7 +508,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="bg-blue-200/20 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Capacity (MVA)
+                        {t("reportDetails.capacity")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.description || "-"}
@@ -522,7 +516,7 @@ const ReportDetails = () => {
                     </div>
                     <div className="bg-blue-200/20 p-4 rounded-xl">
                       <p className="text-sm text-muted-foreground mb-1">
-                        Condition
+                        {t("reportDetails.condition")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.condition || "-"}
@@ -543,21 +537,19 @@ const ReportDetails = () => {
                 7
               </div>
               <h2 className="text-xl font-bold">
-                {" "}
-                Warranty and Limited Liability
+                {t("reportDetails.warrantyAndLiability")}
               </h2>
             </div>
             <div className="space-y-6">
               {report?.step7.map((section, idx: number) => (
-                <div key={idx} className=" p-4">
+                <div key={idx} className="p-4">
                   <h3 className="font-bold text-lg mb-4 capitalize">
                     {section.sectionKey.replace(/_/g, " ")}
                   </h3>
-                  {/* Main Equipment Info - Only 4 fields */}
                   <div className="grid grid-cols-2 gap-6 p-3 border border-yellow-300 bg-yellow-50 rounded-xl">
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
-                        System Type
+                        {t("reportDetails.systemType")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -565,7 +557,7 @@ const ReportDetails = () => {
                     </div>
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
-                        Manufacturer
+                        {t("reportDetails.manufacturer")}
                       </p>
                       <p className="font-medium">
                         {section.sectionData?.equipmentTag || "-"}
@@ -588,4 +580,5 @@ const ReportDetails = () => {
     </div>
   );
 };
+
 export default ReportDetails;

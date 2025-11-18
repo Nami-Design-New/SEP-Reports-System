@@ -32,7 +32,7 @@ export function ChartColumn() {
   return (
     <Card className="pt-12  border-none shadow-none ">
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig}  className="max-h-[350px] w-full flex-1">
           <BarChart accessibilityLayer data={chartData}>
             <CartesianGrid vertical={false} />
             <YAxis tickLine={false} axisLine={false} />

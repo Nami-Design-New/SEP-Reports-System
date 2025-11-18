@@ -47,8 +47,7 @@ export function ChartLineDots() {
   return (
     <Card className="pt-12  border-none shadow-none ">
       <CardContent className="p-0">
-        <ChartContainer config={chartConfig} className="h-full p-0">
-          <ResponsiveContainer width="100%" height={300}>
+        <ChartContainer config={chartConfig}  className="max-h-[350px] w-full flex-1">
             <LineChart accessibilityLayer data={chartData}>
               <CartesianGrid vertical={false} />
               <YAxis tickLine={false} axisLine={false} />
@@ -78,7 +77,6 @@ export function ChartLineDots() {
                 }}
               />
             </LineChart>
-          </ResponsiveContainer>
         </ChartContainer>
       </CardContent>
     </Card>
