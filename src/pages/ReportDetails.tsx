@@ -213,6 +213,7 @@ const ReportDetails = () => {
                         {section.sectionData?.equipmentTag || "-"}
                       </p>
                     </div>
+
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
                         {t("reportDetails.manufacturer")}
@@ -221,6 +222,23 @@ const ReportDetails = () => {
                         {section.sectionData?.manufacturer || "-"}
                       </p>
                     </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        {t("Manufacturer Type")}
+                      </p>
+                      <p className="font-medium">
+                        {section.sectionData?.manufacturerType || "-"}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">
+                        {t("Manufacturer Test")}
+                      </p>
+                      <p className="font-medium">
+                        {section.sectionData?.manufacturerTest || "-"}
+                      </p>
+                    </div>
+
                     <div>
                       <p className="text-sm text-muted-foreground mb-1">
                         {t("reportDetails.description")}
@@ -270,7 +288,9 @@ const ReportDetails = () => {
                                         {file.type.includes("image") ? (
                                           <img
                                             onClick={() => {
-                                              setSelectedImage('../../public/logo.png');
+                                              setSelectedImage(
+                                                "../../public/logo.png"
+                                              );
                                               setIsOpenImageModal(true);
                                             }}
                                             src="/logo.png"

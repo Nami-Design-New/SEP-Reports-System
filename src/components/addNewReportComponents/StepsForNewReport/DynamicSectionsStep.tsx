@@ -58,7 +58,7 @@ export default function DynamicStepsComponent({
 
               <AccordionContent className="space-y-4 p-3">
                 {/* Equipment Tag */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label>{t(`${translationPrefix}.equipmentTag`)}</Label>
                   <Input
                     value={formData[stepKey]?.[sectionKey]?.equipmentTag || ""}
@@ -73,10 +73,10 @@ export default function DynamicStepsComponent({
                       `${translationPrefix}.equipmentTagPlaceholder`
                     )}
                   />
-                </div>
-
+                </div> */}
+                {/* 4- الComponent عايز يغيرها لSingle Line Diagram بين قوصين SLD ومش عايزها تيكست عايزها مع اتاتش */}
                 {/* Component */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label>{t(`${translationPrefix}.component`)}</Label>
                   <Input
                     value={formData[stepKey]?.[sectionKey]?.component || ""}
@@ -85,59 +85,72 @@ export default function DynamicStepsComponent({
                     }
                     placeholder={t(`${translationPrefix}.componentPlaceholder`)}
                   />
-                </div>
+                </div> */}
 
+                {/* Single Line Diagram */}
+                <div className="space-y-4 ">
+                  <div className="grid grid-cols-1  gap-4">
+                    <FileUploader
+                      addFileName=" Single Line Diagram (SLD)"
+                      onFilesChange={(files) => {
+                        setFilesData((prev) => ({
+                          ...prev,
+                          [`${sectionKey}_uploadDocument`]: files,
+                        }));
+                      }}
+                    />
+                  </div>
+                </div>
                 {/* Manufacturer */}
                 <div className="space-y-2">
                   <Label>{t(`${translationPrefix}.manufacturer`)}</Label>
-                  <Input
-                    value={formData[stepKey]?.[sectionKey]?.manufacturer || ""}
-                    onChange={(e) =>
-                      handleInputChange(
-                        sectionKey,
-                        "manufacturer",
-                        e.target.value
-                      )
-                    }
-                    placeholder={t(
-                      `${translationPrefix}.manufacturerPlaceholder`
-                    )}
-                  />
-                </div>
-
-                {/* Description */}
-                <div className="space-y-2">
-                  <Label>{t(`${translationPrefix}.description`)}</Label>
-                  <Textarea
-                    value={formData[stepKey]?.[sectionKey]?.description || ""}
-                    onChange={(e) =>
-                      handleInputChange(
-                        sectionKey,
-                        "description",
-                        e.target.value
-                      )
-                    }
-                    placeholder={t(
-                      `${translationPrefix}.descriptionPlaceholder`
-                    )}
-                  />
-                </div>
-
-                {/* Findings Conclusion */}
-                <div className="space-y-2">
-                  <Label>{t(`${translationPrefix}.findingsConclusion`)}</Label>
-                  <Textarea
-                    value={
-                      formData[stepKey]?.[sectionKey]?.findingsConclusion || ""
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        sectionKey,
-                        "findingsConclusion",
-                        e.target.value
-                      )
-                    }
-                  />
+                  <div className="flex justify-between items-center gap-8">
+                    <Input
+                      value={
+                        formData[stepKey]?.[sectionKey]?.manufacturer || ""
+                      }
+                      onChange={(e) =>
+                        handleInputChange(
+                          sectionKey,
+                          "manufacturer",
+                          e.target.value
+                        )
+                      }
+                      placeholder={t(
+                        `${translationPrefix}.manufacturerPlaceholder`
+                      )}
+                    />{" "}
+                    <Input
+                      value={
+                        formData[stepKey]?.[sectionKey]?.manufacturerType || ""
+                      }
+                      onChange={(e) =>
+                        handleInputChange(
+                          sectionKey,
+                          "manufacturerType",
+                          e.target.value
+                        )
+                      }
+                      placeholder={t(
+                        `Enter type`
+                      )}
+                    />{" "}
+                    <Input
+                      value={
+                        formData[stepKey]?.[sectionKey]?.manufacturerTest || ""
+                      }
+                      onChange={(e) =>
+                        handleInputChange(
+                          sectionKey,
+                          "manufacturerTest",
+                          e.target.value
+                        )
+                      }
+                      placeholder={t(
+                        `${translationPrefix}.manufacturerPlaceholder`
+                      )}
+                    />{" "}
+                  </div>
                 </div>
 
                 {/* Operational Condition & Test Results */}
@@ -147,7 +160,7 @@ export default function DynamicStepsComponent({
                     <br />
                   </h3>
                   <div className="grid grid-cols-1  gap-4">
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label htmlFor={`condition-${sectionKey}`}>
                         {t("newReport.primaryGIS.condition")}
                       </Label>
@@ -165,7 +178,7 @@ export default function DynamicStepsComponent({
                           "newReport.primaryGIS.conditionPlaceholder"
                         )}
                       />
-                    </div>
+                    </div> */}
                     <div className="space-y-2">
                       <Label htmlFor={`numOperations-${sectionKey}`}>
                         {t("newReport.primaryGIS.numberOfOperations")}
@@ -186,7 +199,7 @@ export default function DynamicStepsComponent({
                         placeholder="0"
                       />
                     </div>
-                    <div className="space-y-2">
+                    {/* <div className="space-y-2">
                       <Label htmlFor={`ratedValues-${sectionKey}`}>
                         {t("newReport.primaryGIS.ratedValues")}
                       </Label>
@@ -206,7 +219,7 @@ export default function DynamicStepsComponent({
                           "newReport.primaryGIS.ratedValuesPlaceholder"
                         )}
                       />
-                    </div>
+                    </div> */}
                     <div className="space-y-2">
                       <Label htmlFor={`thermography-${sectionKey}`}>
                         {t("newReport.primaryGIS.thermography")}
@@ -308,13 +321,13 @@ export default function DynamicStepsComponent({
                   </div>
                 </div>
 
-                {/* Test Results */}
-                <h3 className="font-semibold text-lg text-[#0d5c87]">
-                  {t(`${translationPrefix}.testResults`)}
-                </h3>
+                <div>
+                  {/* Test Results */}
+                  <h3 className="font-semibold text-lg text-[#0d5c87] mt-8">
+                    {/* {t(`${translationPrefix}.testResults`)} */}
+                  </h3>
 
-                {["SF6Lakeage", "temperature", "oilLevel", "humidity"].map(
-                  (item) => (
+                  {["testResults"].map((item) => (
                     <FileUploader
                       key={item}
                       addFileName={t(`newReport.primaryGIS.${item}`)}
@@ -325,8 +338,8 @@ export default function DynamicStepsComponent({
                         }))
                       }
                     />
-                  )
-                )}
+                  ))}
+                </div>
 
                 {/* Assessment Condition */}
                 <div className="space-y-4 ">
@@ -367,8 +380,41 @@ export default function DynamicStepsComponent({
                   </div>
                 </div>
 
+                {/* Description */}
+                <div className="space-y-2">
+                  <Label>{t(`${translationPrefix}.description`)}</Label>
+                  <Textarea
+                    value={formData[stepKey]?.[sectionKey]?.description || ""}
+                    onChange={(e) =>
+                      handleInputChange(
+                        sectionKey,
+                        "description",
+                        e.target.value
+                      )
+                    }
+                    placeholder={t(
+                      `${translationPrefix}.descriptionPlaceholder`
+                    )}
+                  />
+                </div>
+                {/* Findings Conclusion */}
+                <div className="space-y-2">
+                  <Label>{t(`${translationPrefix}.findingsConclusion`)}</Label>
+                  <Textarea
+                    value={
+                      formData[stepKey]?.[sectionKey]?.findingsConclusion || ""
+                    }
+                    onChange={(e) =>
+                      handleInputChange(
+                        sectionKey,
+                        "findingsConclusion",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
                 {/* Assessment Results */}
-                <div className="space-y-4 ">
+                {/* <div className="space-y-4 ">
                   <h3 className="font-semibold text-lg text-[#0d5c87]">
                     {t("newReport.primaryGIS.assessmentResults")}
                   </h3>
@@ -393,7 +439,6 @@ export default function DynamicStepsComponent({
                         )}
                       />
                     </div>
-                    {/* upload document wait.. */}
                     <FileUploader
                       addFileName={t("newReport.primaryGIS.uploadFile")}
                       onFilesChange={(files) => {
@@ -404,7 +449,7 @@ export default function DynamicStepsComponent({
                       }}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 {/* Recommendations */}
                 <div className="space-y-2">
