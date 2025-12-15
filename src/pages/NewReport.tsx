@@ -43,7 +43,6 @@ const NewReport = () => {
       t("newReport.steps.step2.circuitBreakersHydraulic"),
       t("newReport.steps.step2.circuitBreakersSpring"),
       t("newReport.steps.step2.combinedDisconnectGround"),
-      // t("newReport.steps.step2.groundSwitches"),
       t("newReport.steps.step2.currentTransformers"),
       t("newReport.steps.step2.voltageTransformers"),
       t("newReport.steps.step2.gisTerminations"),
@@ -132,8 +131,8 @@ const NewReport = () => {
             oilLevel: "yes",
             oilCondition: "yes",
             springCondition: "yes",
-            chargingCurrent: "yes",
-            chargingTime: "yes",
+            chargingCurrent: "no",
+            chargingTime: "no",
             chargingCurrentInput: "",
             chargingTimeInput: "",
             assignCondition: "",
@@ -145,19 +144,22 @@ const NewReport = () => {
             spindle: "no",
             couplingLinkage: "no",
             visualInspection: "no",
-            "Mechanical indication": "no",
-            "Manual operation": "no",
-            "Interlock system": "no",
-            "Terminal tightness": "no",
-            "DS contacts (outdoor)": "no",
-            "Current during opening and closing": "no",
-            "Time during opening and closing": "no",
-            "SF6 pressure/density for all compartments": "no",
-            "SF6 moisture (dew point ≤ -35 °C or as recommended)": "no",
-            "SF6 percentage (≥ 97% or as recommended)": "no",
-            "SO₂ content and decomposition (0–12 ppmv)": "no",
-            "SF6 alarms (1st and 2nd stage)": "yes",
-            "Gas leaks using a gas tester": "yes",
+            // GIS – Record readings for
+            sf6PressureStatus: "no",
+            sf6PressureValue: "",
+
+            sf6MoistureStatus: "no",
+            sf6MoistureValue: "",
+
+            sf6PercentageStatus: "no",
+            sf6PercentageValue: "",
+
+            sf6So2Status: "no",
+            sf6So2Value: "",
+
+            // GIS – Check for
+            sf6AlarmsStatus: "yes",
+            gasLeakStatus: "yes",
           };
         }
       });
