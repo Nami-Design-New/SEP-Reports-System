@@ -177,7 +177,27 @@ export default function DynamicStepsComponent({
                         placeholder="0"
                       />
                     </div>
-
+                    {/* <div className="space-y-2">
+                      <Label htmlFor={`ratedValues-${sectionKey}`}>
+                        {t("newReport.primaryGIS.ratedValues")}
+                      </Label>
+                      <Input
+                        id={`ratedValues-${sectionKey}`}
+                        value={
+                          formData[stepKey]?.[sectionKey]?.ratedValues || ""
+                        }
+                        onChange={(e) =>
+                          handleInputChange(
+                            sectionKey,
+                            "ratedValues",
+                            e.target.value
+                          )
+                        }
+                        placeholder={t(
+                          "newReport.primaryGIS.ratedValuesPlaceholder"
+                        )}
+                      />
+                    </div> */}
                     <div className="space-y-2">
                       <Label htmlFor={`thermography-${sectionKey}`}>
                         {t("newReport.primaryGIS.thermography")}
@@ -287,31 +307,96 @@ export default function DynamicStepsComponent({
                           Record readings for
                         </h3>
 
-                        {gisRecordReadings.map((item) => (
-                          <GisSwitchGearsComponent
-                            key={item.key}
-                            itemKey={item.key}
-                            label={item.label}
-                            hasInputField={item.hasInputField}
-                            formData={formData}
-                            stepKey={stepKey}
-                            sectionKey={sectionKey}
-                            handleInputChange={handleInputChange}
-                          />
+                        {[
+                          "SF6 pressure/density for all compartments",
+                          "SF6 moisture (dew point ≤ -35 °C or as recommended)",
+                          "SF6 percentage (≥ 97% or as recommended)",
+                          "SO₂ content and decomposition (0–12 ppmv)",
+                        ].map((item) => (
+                          <>
+                            <div
+                              key={item}
+                              className="space-y-2 flex justify-between items-center"
+                            >
+                              <Label>{item}</Label>
+                              <div className="flex gap-4 mt-2">
+                                <RadioButtonGroup
+                                  options={[
+                                    { label: t("common.yes"), value: "yes" },
+                                    { label: t("common.no"), value: "no" },
+                                  ]}
+                                  value={
+                                    formData[stepKey]?.[sectionKey]?.[item] ||
+                                    "no"
+                                  }
+                                  onChange={(value) =>
+                                    handleInputChange(sectionKey, item, value)
+                                  }
+                                  name={`${item}-${sectionKey}`}
+                                />
+                              </div>
+                            </div>
+                            {formData[stepKey]?.[sectionKey]?.[item] ===
+                              "yes" && (
+                              <div className="space-y-2">
+                                <Input
+                                  id={`chargingCurrentInput-${item}`}
+                                  value={
+                                    formData[stepKey]?.[item]
+                                      ?.chargingCurrentInput || ""
+                                  }
+                                  onChange={(e) =>
+                                    handleInputChange(
+                                      item,
+                                      "chargingCurrentInput",
+                                      e.target.value
+                                    )
+                                  }
+                                  type="number"
+                                  placeholder="enter number charging current"
+                                />
+                              </div>
+                            )}
+                          </>
                         ))}
-
+                        {/* ⦁ Check for */}
                         <h3 className="font-semibold text-lg">Check for</h3>
 
-                        {gisCheckFor.map((item) => (
-                          <GisSwitchGearsComponent
-                            key={item.key}
-                            itemKey={item.key}
-                            label={item.label}
-                            formData={formData}
-                            stepKey={stepKey}
-                            sectionKey={sectionKey}
-                            handleInputChange={handleInputChange}
-                          />
+                        {[
+                          "SF6 alarms (1st and 2nd stage)",
+                          "Gas leaks using a gas tester",
+                        ].map((item) => (
+                          <>
+                            <div
+                              key={item}
+                              className="space-y-2 flex justify-between items-center"
+                            >
+                              <Label>{item}</Label>
+                              <div className="flex gap-4 mt-2">
+                                <RadioButtonGroup
+                                  options={[
+                                    { label: t("common.yes"), value: "yes" },
+                                    { label: t("common.no"), value: "no" },
+                                  ]}
+                                  value={
+                                    formData[stepKey]?.[sectionKey]?.[item] ||
+                                    "no"
+                                  }
+                                  onChange={(value) =>
+                                    handleInputChange(sectionKey, item, value)
+                                  }
+                                  name={`${item}-${sectionKey}`}
+                                />
+                              </div>
+                            </div>
+                            {formData[stepKey]?.[sectionKey]?.[item] ===
+                              "no" && (
+                              <p className="text-sm text-red-600 mt-1 bg-yellow-100 p-4">
+                                If not OK, mentioned corrective maintenance
+                                required
+                              </p>
+                            )}
+                          </>
                         ))}
                       </>
                     )}
@@ -524,44 +609,6 @@ export default function DynamicStepsComponent({
                     }
                   />
                 </div>
-                {/* Assessment Results */}
-                {/* <div className="space-y-4 ">
-                  <h3 className="font-semibold text-lg text-[#0d5c87]">
-                    {t("newReport.primaryGIS.assessmentResults")}
-                  </h3>
-                  <div className="grid grid-cols-1  gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor={`riskFactor-${sectionKey}`}>
-                        {t("newReport.primaryGIS.riskFactor")}
-                      </Label>
-                      <Textarea
-                        value={
-                          formData[stepKey]?.[sectionKey]?.riskFactor || ""
-                        }
-                        onChange={(e) =>
-                          handleInputChange(
-                            sectionKey,
-                            "riskFactor",
-                            e.target.value
-                          )
-                        }
-                        placeholder={t(
-                          "newReport.primaryGIS.riskFactorPlaceholder"
-                        )}
-                      />
-                    </div>
-                    <FileUploader
-                      addFileName={t("newReport.primaryGIS.uploadFile")}
-                      onFilesChange={(files) => {
-                        setFilesData((prev) => ({
-                          ...prev,
-                          [`${sectionKey}_uploadDocument`]: files,
-                        }));
-                      }}
-                    />
-                  </div>
-                </div> */}
-
                 {/* Recommendations */}
                 <div className="space-y-2">
                   <Label>{t(`${translationPrefix}.recommendations`)}</Label>

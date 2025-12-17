@@ -43,7 +43,6 @@ const NewReport = () => {
       t("newReport.steps.step2.circuitBreakersHydraulic"),
       t("newReport.steps.step2.circuitBreakersSpring"),
       t("newReport.steps.step2.combinedDisconnectGround"),
-      // t("newReport.steps.step2.groundSwitches"),
       t("newReport.steps.step2.currentTransformers"),
       t("newReport.steps.step2.voltageTransformers"),
       t("newReport.steps.step2.gisTerminations"),
