@@ -11,6 +11,7 @@ const GisSwitchGearsComponent = ({
   handleInputChange,
   sectionKey,
   hasInputField = false,
+  inputKey,
 }) => {
   const { t } = useTranslation();
 
@@ -37,11 +38,11 @@ const GisSwitchGearsComponent = ({
         <Input
           type="number"
           placeholder="enter number"
-          value={formData[stepKey]?.[sectionKey]?.chargingCurrentInput || ""}
+          value={formData[stepKey]?.[sectionKey]?.[inputKey] || ""}
           onChange={(e) =>
             handleInputChange(
               sectionKey,
-              "chargingCurrentInput",
+              inputKey,
               e.target.value
             )
           }
@@ -50,7 +51,7 @@ const GisSwitchGearsComponent = ({
 
       {value === "no" && (
         <p className="text-sm text-red-600 mt-1 bg-yellow-100 p-4">
-          If not OK, mentioned corrective maintenance required
+          corrective maintenance required
         </p>
       )}
     </>

@@ -99,7 +99,7 @@
         "gisTerminations": "نهايات GIS"
       },
       "step3": {
-        "currentTransformers": "محولات التيار",
+        "currentTransformers": "محولات الطاقة",
         "surgeArresters": "أجهزة صواع الجهد (Surge Arresters)",
         "capacitorBanks": "بنوك المكثفات",
         "cableCircuits": "دوائر الكابلات (الكابل ونهايات الإغلاق)"

@@ -235,7 +235,7 @@ const ReportDetails = () => {
                         {t("Manufacturer Test")}
                       </p>
                       <p className="font-medium">
-                        {section.sectionData?.manufacturerTest || "-"}
+                        {section.sectionData?.yearOfManufacturer || "-"}
                       </p>
                     </div>
 

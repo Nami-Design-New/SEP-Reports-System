@@ -134,18 +134,17 @@ export default function DynamicStepsComponent({
                     />{" "}
                     <Input
                       value={
-                        formData[stepKey]?.[sectionKey]?.manufacturerTest || ""
+                        formData[stepKey]?.[sectionKey]?.yearOfManufacturer ||
+                        ""
                       }
                       onChange={(e) =>
                         handleInputChange(
                           sectionKey,
-                          "manufacturerTest",
+                          "yearOfManufacturer",
                           e.target.value
                         )
                       }
-                      placeholder={t(
-                        `${translationPrefix}.manufacturerPlaceholder`
-                      )}
+                      placeholder={t(`Enter year of manufacturer`)}
                     />{" "}
                   </div>
                 </div>
@@ -278,7 +277,7 @@ export default function DynamicStepsComponent({
                     </div>
                     {formData[stepKey]?.[sectionKey]?.spareParts === "no" && (
                       <p className="text-sm text-red-600 mt-1 bg-yellow-100 p-4">
-                        If not OK, mentioned corrective maintenance required
+                        corrective maintenance required
                       </p>
                     )}
                     {activeAccordion === "GIS Switch Gears" && (
@@ -297,6 +296,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
 
@@ -311,6 +311,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
                       </>
@@ -327,6 +328,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
 
@@ -341,6 +343,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
                       </>
@@ -358,6 +361,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
                       </>
@@ -376,6 +380,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
 
@@ -393,6 +398,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
 
@@ -408,6 +414,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
 
@@ -425,6 +432,7 @@ export default function DynamicStepsComponent({
                             stepKey={stepKey}
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
+                            inputKey={item.inputKey}
                           />
                         ))}
                       </>

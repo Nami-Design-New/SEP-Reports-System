@@ -100,7 +100,7 @@
         "gisTerminations": "GIS Terminations"
       },
       "step3": {
-        "currentTransformers": "Current Transformers",
+        "currentTransformers": "Power Transformers",
         "surgeArresters": "Surge Arresters",
         "capacitorBanks": "Capacitor Banks",
         "cableCircuits": "Cable Circuits (Cable and Sealing-Ends)"

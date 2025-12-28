@@ -115,7 +115,7 @@ const NewReport = () => {
             component: "",
             manufacturer: "",
             manufacturerType: "",
-            manufacturerTest: "",
+            yearOfManufacturer: "",
             description: "",
             condition: "",
             numOperations: "",
@@ -139,24 +139,32 @@ const NewReport = () => {
             riskFactor: "",
             recommendations: "",
             findingsConclusion: "",
-            // اقسام جديدة لضمان أنها موجودة
-            OperatingLevel: "",
+
+            operatingLevel: "",
             spindle: "",
             couplingLinkage: "",
             visualInspection: "",
-            "Mechanical indication": "",
-            "Manual operation": "",
-            "Interlock system": "",
-            "Terminal tightness": "",
-            "DS contacts (outdoor)": "",
-            "Current during opening and closing": "",
-            "Time during opening and closing": "",
-            "SF6 pressure/density for all compartments": "",
-            "SF6 moisture (dew point ≤ -35 °C or as recommended)": "",
-            "SF6 percentage (≥ 97% or as recommended)": "",
-            "SO₂ content and decomposition (0–12 ppmv)": "",
-            "SF6 alarms (1st and 2nd stage)": "",
-            "Gas leaks using a gas tester": "",
+            mechanicalIndication: "",
+            mechanicalIndicationInput: "",
+            manualOperation: "",
+            interlockSystem: "",
+            terminalTightness: "",
+            dsContacts: "",
+            currentTest: "",
+            currentValue: "",
+            timeTest: "",
+            timeValue: "",
+
+            sf6Pressure: "",
+            sf6PressureInput: "",
+            sf6Moisture: "",
+            sf6MoistureInput: "",
+            sf6Percentage: "",
+            sf6PercentageInput: "",
+            so2Content: "",
+            so2ContentInput: "",
+            sf6Alarms: "",
+            gasLeaks: "",
           };
         }
       });
@@ -198,7 +206,6 @@ const NewReport = () => {
       },
     }));
   };
-  
 
   // Handler to update step section data
   const handleStepInputChange = (
@@ -312,8 +319,11 @@ const NewReport = () => {
             <Save className="h-4 w-4" />
             {t("common.saveAsDraft")}
           </Button>
-          <Button variant="outline" onClick={() => navigate("/my-reports")}>
+          {/* <Button variant="outline" onClick={() => navigate("/my-reports")}>
             {t("common.back")}
+          </Button> */}
+          <Button onClick={handleSubmit} className="gap-2">
+            Submit
           </Button>
         </div>
       </div>
@@ -322,7 +332,7 @@ const NewReport = () => {
       <Card>
         <CardContent className="p-6">
           <div className="mb-4">
-            <div className="flex items-center justify-between mb-2">
+            {/* <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">
                 {t("newReport.step")} {currentStep} {t("newReport.of")}{" "}
                 {totalSteps}
@@ -330,8 +340,8 @@ const NewReport = () => {
               <span className="text-sm font-medium">
                 {Math.round(progress)}%
               </span>
-            </div>
-            <Progress value={progress} className="h-2" />
+            </div> */}
+            {/* <Progress value={progress} className="h-2" /> */}
           </div>
 
           {/* Steps Navigator */}
