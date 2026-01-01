@@ -12,6 +12,8 @@ const GisSwitchGearsComponent = ({
   sectionKey,
   hasInputField = false,
   inputKey,
+  firstLabel,
+  secondLabel,
 }) => {
   const { t } = useTranslation();
 
@@ -19,8 +21,14 @@ const GisSwitchGearsComponent = ({
 
   return (
     <>
+      {firstLabel && (
+        <h1 className="text-lg font-semibold text-[#0d5c87]">{firstLabel}</h1>
+      )}
+      {secondLabel && (
+        <h3 className="text-sm font-semibold text-[#3888b3] mx-2">{secondLabel}</h3>
+      )}
       <div className="space-y-2 flex justify-between items-center">
-        <Label>{label}</Label>
+        <Label className="mx-4">{label}</Label>
         <div className="flex gap-4 mt-2">
           <RadioButtonGroup
             options={[
@@ -40,11 +48,7 @@ const GisSwitchGearsComponent = ({
           placeholder="enter number"
           value={formData[stepKey]?.[sectionKey]?.[inputKey] || ""}
           onChange={(e) =>
-            handleInputChange(
-              sectionKey,
-              inputKey,
-              e.target.value
-            )
+            handleInputChange(sectionKey, inputKey, e.target.value)
           }
         />
       )}

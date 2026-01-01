@@ -16,15 +16,13 @@ import ConditionGrid from "../ConditionGrid";
 import { RadioButtonGroup } from "@/components/addNewReportComponents/RadioButtonGroup";
 import { useState } from "react";
 import {
-  combinedCheckItems,
   combinedVisualInspection,
   gisCheckFor,
   gisRecordReadings,
   hydraulicCheckItems,
   hydraulicItems,
-  inspectAndLubricateItems,
-  motorRunningTests,
   springBreakerItems,
+  visualAndPhysicalInspection,
 } from "@/lib/constants";
 import GisSwitchGearsComponent from "./GisSwitchGearsComponent";
 
@@ -51,7 +49,7 @@ export default function DynamicStepsComponent({
 }: DynamicStepsComponentProps) {
   const { t } = useTranslation();
   const [activeAccordion, setActiveAccordion] = useState(null);
-  // console.log("active accordion", activeAccordion, sections);
+  console.log("active accordion", activeAccordion, sections);
 
   return (
     <Card className="py-8">
@@ -212,7 +210,9 @@ export default function DynamicStepsComponent({
                 {/* Maintenance History */}
                 <div className="space-y-4 ">
                   <h3 className="font-semibold text-lg text-[#0d5c87]">
-                    {t("newReport.primaryGIS.maintenanceHistory")}
+                    {activeAccordion === "Power Transformers"
+                      ? "Maintenance Procedures"
+                      : t("newReport.primaryGIS.maintenanceHistory")}
                   </h3>
                   <div className="grid grid-cols-1  gap-4">
                     <div className="space-y-2">
@@ -297,6 +297,8 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
+                            secondLabel={false}
+                            firstLabel={false}
                           />
                         ))}
 
@@ -312,6 +314,8 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
+                            secondLabel={false}
+                            firstLabel={false}
                           />
                         ))}
                       </>
@@ -329,6 +333,8 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
+                            secondLabel={false}
+                            firstLabel={false}
                           />
                         ))}
 
@@ -344,6 +350,8 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
+                            secondLabel={false}
+                            firstLabel={false}
                           />
                         ))}
                       </>
@@ -362,6 +370,8 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
+                            secondLabel={false}
+                            firstLabel={false}
                           />
                         ))}
                       </>
@@ -381,14 +391,16 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
+                            secondLabel={false}
+                            firstLabel={item.firstLabel}
                           />
                         ))}
+                      </>
+                    )}
 
-                        <h3 className="font-semibold text-lg">
-                          Inspect and lubricate
-                        </h3>
-
-                        {inspectAndLubricateItems.map((item) => (
+                    {activeAccordion === "Power Transformers" && (
+                      <>
+                        {visualAndPhysicalInspection.map((item) => (
                           <GisSwitchGearsComponent
                             key={item.key}
                             itemKey={item.key}
@@ -399,40 +411,8 @@ export default function DynamicStepsComponent({
                             sectionKey={sectionKey}
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
-                          />
-                        ))}
-
-                        <h3 className="font-semibold text-lg">Check</h3>
-
-                        {combinedCheckItems.map((item) => (
-                          <GisSwitchGearsComponent
-                            key={item.key}
-                            itemKey={item.key}
-                            label={item.label}
-                            hasInputField={item.hasInputField}
-                            formData={formData}
-                            stepKey={stepKey}
-                            sectionKey={sectionKey}
-                            handleInputChange={handleInputChange}
-                            inputKey={item.inputKey}
-                          />
-                        ))}
-
-                        <h3 className="font-semibold text-lg">
-                          Test motor running
-                        </h3>
-
-                        {motorRunningTests.map((item) => (
-                          <GisSwitchGearsComponent
-                            key={item.key}
-                            itemKey={item.key}
-                            label={item.label}
-                            hasInputField={item.hasInputField}
-                            formData={formData}
-                            stepKey={stepKey}
-                            sectionKey={sectionKey}
-                            handleInputChange={handleInputChange}
-                            inputKey={item.inputKey}
+                            secondLabel={item.secondLabel}
+                            firstLabel={item.firstLabel}
                           />
                         ))}
                       </>
