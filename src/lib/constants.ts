@@ -18,10 +18,13 @@ export const hydraulicItems = [
     inputKey: null,
   },
   { key: "values", label: "Valves", hasInputField: false, inputKey: null },
-];
-
-export const hydraulicCheckItems = [
-  { key: "oilLevel", label: "Oil level", hasInputField: false, inputKey: null },
+  {
+    key: "oilLevel",
+    label: "Oil level",
+    hasInputField: false,
+    inputKey: null,
+    firstLabel: "Check",
+  },
   {
     key: "oilCondition",
     label: "Oil Condition",
@@ -30,12 +33,23 @@ export const hydraulicCheckItems = [
   },
 ];
 
+// export const hydraulicCheckItems = [
+//   { key: "oilLevel", label: "Oil level", hasInputField: false, inputKey: null },
+//   {
+//     key: "oilCondition",
+//     label: "Oil Condition",
+//     hasInputField: false,
+//     inputKey: null,
+//   },
+// ];
+
 export const gisRecordReadings = [
   {
     key: "sf6Pressure",
     label: "SF6 pressure/density for all compartments",
     hasInputField: true,
     inputKey: "sf6PressureInput",
+    firstLabel: "Record readings for",
   },
   {
     key: "sf6Moisture",
@@ -55,14 +69,12 @@ export const gisRecordReadings = [
     hasInputField: true,
     inputKey: "so2ContentInput",
   },
-];
-
-export const gisCheckFor = [
   {
     key: "sf6Alarms",
     label: "SF6 alarms (1st and 2nd stage)",
     hasInputField: false,
     inputKey: null,
+    firstLabel: "Check for",
   },
   {
     key: "gasLeaks",
@@ -71,6 +83,21 @@ export const gisCheckFor = [
     inputKey: null,
   },
 ];
+
+// export const gisCheckFor = [
+//   {
+//     key: "sf6Alarms",
+//     label: "SF6 alarms (1st and 2nd stage)",
+//     hasInputField: false,
+//     inputKey: null,
+//   },
+//   {
+//     key: "gasLeaks",
+//     label: "Gas leaks using a gas tester",
+//     hasInputField: false,
+//     inputKey: null,
+//   },
+// ];
 
 export const springBreakerItems = [
   {

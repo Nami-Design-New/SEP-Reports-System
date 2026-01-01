@@ -17,9 +17,7 @@ import { RadioButtonGroup } from "@/components/addNewReportComponents/RadioButto
 import { useState } from "react";
 import {
   combinedVisualInspection,
-  gisCheckFor,
   gisRecordReadings,
-  hydraulicCheckItems,
   hydraulicItems,
   springBreakerItems,
   visualAndPhysicalInspection,
@@ -282,10 +280,6 @@ export default function DynamicStepsComponent({
                     )}
                     {activeAccordion === "GIS Switch Gears" && (
                       <>
-                        <h3 className="font-semibold text-lg">
-                          Record readings for
-                        </h3>
-
                         {gisRecordReadings.map((item) => (
                           <GisSwitchGearsComponent
                             key={item.key}
@@ -298,24 +292,7 @@ export default function DynamicStepsComponent({
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
                             secondLabel={false}
-                            firstLabel={false}
-                          />
-                        ))}
-
-                        <h3 className="font-semibold text-lg">Check for</h3>
-
-                        {gisCheckFor.map((item) => (
-                          <GisSwitchGearsComponent
-                            key={item.key}
-                            itemKey={item.key}
-                            label={item.label}
-                            formData={formData}
-                            stepKey={stepKey}
-                            sectionKey={sectionKey}
-                            handleInputChange={handleInputChange}
-                            inputKey={item.inputKey}
-                            secondLabel={false}
-                            firstLabel={false}
+                            firstLabel={item.firstLabel}
                           />
                         ))}
                       </>
@@ -334,24 +311,7 @@ export default function DynamicStepsComponent({
                             handleInputChange={handleInputChange}
                             inputKey={item.inputKey}
                             secondLabel={false}
-                            firstLabel={false}
-                          />
-                        ))}
-
-                        <h3 className="font-semibold text-lg">Check</h3>
-
-                        {hydraulicCheckItems.map((item) => (
-                          <GisSwitchGearsComponent
-                            key={item.key}
-                            itemKey={item.key}
-                            label={item.label}
-                            formData={formData}
-                            stepKey={stepKey}
-                            sectionKey={sectionKey}
-                            handleInputChange={handleInputChange}
-                            inputKey={item.inputKey}
-                            secondLabel={false}
-                            firstLabel={false}
+                            firstLabel={item.firstLabel}
                           />
                         ))}
                       </>
